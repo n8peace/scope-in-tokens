@@ -15,3 +15,7 @@ A real example: an iOS app release with an AI video host, five build lanes plus 
 ## License
 
 MIT
+
+## Related
+
+[tokencast](https://github.com/krulewis/tokencast) also estimates token cost for planned agent work and learns from logged usage.

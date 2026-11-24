@@ -9,6 +9,7 @@ Agents run in parallel, so hours don't decide speed. Tokens do, and they also de
 
 ## Steps
 
+0. **Correct from the past.** Before estimating, read your scope log (`scopes.jsonl`, one line per lane). For each lane type (UI, backend, live media, payments, review), take the median of actual tokens divided by estimate. Multiply the new estimate by it, and say which correction you used and how many past runs it rests on. With fewer than 3 past runs of that type, use no correction and say so.
 1. **Split the work into lanes** that can run at the same time. Each lane has its own check (a test, a build, a screenshot, a listen) and touches files no other lane touches. Lanes that share files run one after another.
 2. **Pick the worker for each lane:** the cheapest one that does it well.
    - A script (no model) for checks, counts, fetches and "did it go live".
@@ -19,7 +20,7 @@ Agents run in parallel, so hours don't decide speed. Tokens do, and they also de
 3. **Estimate tokens per lane, re-reads included.** Split the coding agent from the chat model, and the chat model by tier.
 4. **Name the critical path.** It's usually not tokens. It's people (keys, picks, approvals), outside reviews (an app store) and shared hardware (one simulator). Say which extra lanes would help and which wouldn't.
 5. **Use dates only where someone outside sets them** (a store review, a launch day, a price deadline).
-6. **Log actual tokens beside the estimate** when the work ships, so the next scope gets better.
+6. **Log actual tokens beside the estimate** when the work ships, one line per lane: `{"date","lane_type","estimate","actual","model"}`. Step 0 reads it next time.
 
 ## Output shape
 
